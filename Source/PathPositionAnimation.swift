@@ -19,7 +19,7 @@ public class PathPositionAnimation : Animation<CGFloat>, Animatable {
         }
     }
     private let animationKey = "PathPosition"
-    public var rotationMode : String? = convertFromCAAnimationRotationMode(CAAnimationRotationMode.rotateAuto) {
+    public var rotationMode : CAAnimationRotationMode? = .rotateAuto {
         didSet {
             createKeyframeAnimation()
         }
@@ -67,16 +67,11 @@ public class PathPositionAnimation : Animation<CGFloat>, Animatable {
         animation.isAdditive = true
         animation.repeatCount = Float.infinity
         animation.calculationMode = CAAnimationCalculationMode.paced
-        animation.rotationMode = convertToOptionalCAAnimationRotationMode(rotationMode)
+        animation.rotationMode = rotationMode
         animation.fillMode = CAMediaTimingFillMode.both
         animation.isRemovedOnCompletion = false
         return animation
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAAnimationRotationMode(_ input: CAAnimationRotationMode) -> String {
-	return input.rawValue
 }
 
 // Helper function inserted by Swift 4.2 migrator.
